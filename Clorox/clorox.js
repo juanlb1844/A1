@@ -2,8 +2,9 @@ $(document).ready(
 		function() { 
 
 		class initBeer {
-			constructor(nameSpace) {
+			constructor(nameSpace, pixels) {
 				this.nameSpace = nameSpace; 
+				this.pixels = pixels; 
 			}
 			get getName() {
 				return this.nameSpace; 
@@ -12,13 +13,21 @@ $(document).ready(
 
 		//functions.. && 
 
-		const clorox = new initBeer('clorox'); 
+		const clorox = new initBeer('clorox', 20); 
 		console.log(clorox.getName); 
 
 		var stylesDie = {
 			dimensions : function (width, height) {
 				var cad = "#"+(clorox.getName); 
-				$(cad).css('border', '10px solid black').css('height', '300').css('width', '70%').css('margin', 'auto'); 
+				$(cad).css('border', '10px solid black')
+					.css('height', 'auto')
+					.css('width', '70%')
+					.css('margin', 'auto')
+					.css('position', 'absolute');
+
+				for(var i = 0; i < 40; i++) {
+					$(cad).append('<div style="float:left; width:9%; margin:2px; border:1px solid green;" class="pixel'+i+'"><h1>X</h1></div>'); 
+				}
 			}
 		}
 		stylesDie.dimensions(); 
