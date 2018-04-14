@@ -11,8 +11,21 @@
 <div id="clorox" action="autoStart">
 </div>
 
-<div id="clorox2" action="autoStart">
-</div>
-
 </body>
 </html>
+
+<style type="text/css">
+	.pixel {
+		transition-property: all; 
+		transition-duration: .4s;
+	}
+	#cloro {
+		animation-name: rotar;
+		animation-duration: 4s;
+		animation-iteration-count: infinite; 
+	}
+	@keyframes rotar {
+		from{ transform: rotate(360deg); }
+		to { transition: rotate(90deg); } 
+	}
+</style>

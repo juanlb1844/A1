@@ -1,39 +1,65 @@
 $(document).ready(function(){
 
-	function clorox(cloroConf, selector, proportions) {
+	function clorox(cloroConf, selector, proportions, cloroFunctions) {
 		this.config = cloroConf; 
 		this.selector = selector; 
-		this.proportions = proportions; 
+		this.proportions = proportions;
+		this.functions = cloroFunctions; 
+		this.widthClorox = 
+
 		this.initView = function() {
-				for(i in this.config) {
-						console.log($(this.selector).html()); 
-						$(this.selector).css('width', this.config.width)
-										.css('border', this.config.border)
-										.css('min-height', this.config.minHeight)
-										.css('position', 'absolute'); 
+			$(this.selector).css(this.config.container); 
+			this.widthClorox = $(this.selector).css('width'); 
+		};
+
+		this.cloroFill = function() {
+			var pixelWidth = this.config.content.width;
+			pixelWidth = pixelWidth.substr(0, pixelWidth.length - 1); 
+			var widthClorox = this.widthClorox; 
+			widthClorox = widthClorox.substr(0, widthClorox.length - 2) 
+			var heightPixel = ( (widthClorox * pixelWidth) / 100 );
+			this.config.content.height = heightPixel; 
+			for( j = 0; j < this.proportions.rows; j++) {
+				for( i = 0; i < this.proportions.cols; i++) {
+						element = $('<div>'); 
+						element.append('<h1></h1>');
+						element.css(this.config.content);  
+						$(element).addClass('pixel');  
+						$(element).addClass('pixel'+(i+j));
+						$(this.selector).append(element); 
 				}
-		}; 
-		this.create = function() {
-			for( i = 0; i < this.proportions; i++) {
-					element = $('<div>'); 
-					element.append('<h1>&nbsp;</h1>');
-					element.css('float', 'left').css('width', '2.2%').
-					css('background-color', 'black')
-					.css('border-radius', '4px')
-					.css('margin', '4px')
-					.css('height', '20px'); 
-					$(element).addClass('pixel');  
-					$(element).addClass('pixel'+i); 
-					$(this.selector).append(element); 
 			}
-		} 
-		this.effect = function() {
+		}
+
+	this.effect = this.functions.testFunction; 
+
+   }
+	var cloroConf_1 = {
+		container : {
+			'width' : '70%', 
+			'position' : 'absolute', 
+			'border'   : '10px solid black', 
+			'position' : 'absolute', 
+			'margin-left': '12%', 
+			'margin-top' : '100px'
+		}, 
+		content : {
+			'float' : 'left', 
+			'width' : '5%', 
+			'background-color' : 'white',  
+			'border-radius' : '4px', 
+			'margin' : '4px', 
+			'height' : '50px' 
+		}
+	}
+
+	var cloroFunctions = {
+		testFunction : function() {
 			var i = 0; 
 			var j = 0; 
 			var e = 0;  
-			var x = this.proportions; 
+			var x = this.proportions.cols; 
 			setInterval(function() {
-					//$('.pixel').css('background-color', 'black'); 
 					$('.pixel'+i).css('background-color', 'rgba('+ (Math.floor(Math.random() * 255) + 1 )+','+(Math.floor(Math.random() * 255) + 1)+','+(Math.floor(Math.random() * 255) + 1  )); 
 					i++; 
 					if(i == x ) i = 0; 
@@ -46,25 +72,21 @@ $(document).ready(function(){
 			}, 50);
 
 			setInterval(function() {
-					//$('.pixel').css('background-color', 'black'); 
-					$('.pixel'+e).css('background-color', 'black');  
+					$('.pixel'+e).css('background-color', 'white');  
 					e++; 
 					if(e == x ) e = 0; 
 			}, 60);
 
-		}
-	}
+		   }
+	}; 
+	var proportions = {
+		cols : '17', 
+		rows : '6'
+	}; 
 
-	var cloroConf_1 = {
-		'width' : '80%', 
-		'minHeight' : '400px', 
-		'position' : 'absolute', 
-		'border'   : '10px solid black'
-	}
-	var A1 = new clorox(cloroConf_1, "#clorox", 544); 
+	var A1 = new clorox(cloroConf_1, "#clorox", proportions, cloroFunctions); 
 	A1.initView(); 
-	A1.create(); 
+	A1.cloroFill(); 
 	A1.effect(); 
-
 
 }); 
