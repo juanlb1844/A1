@@ -5,7 +5,6 @@ $(document).ready(function(){
 		this.selector = selector; 
 		this.proportions = proportions;
 		this.functions = cloroFunctions; 
-		this.widthClorox = 
 
 		this.initView = function() {
 			$(this.selector).css(this.config.container); 
@@ -22,7 +21,7 @@ $(document).ready(function(){
 			for( j = 0; j < this.proportions.rows; j++) {
 				for( i = 0; i < this.proportions.cols; i++) {
 						element = $('<div>'); 
-						element.append('<h1></h1>');
+						element.append('<span>'+(i+j)+'</span>');
 						element.css(this.config.content);  
 						$(element).addClass('pixel');  
 						$(element).addClass('pixel'+(i+j));
@@ -34,22 +33,23 @@ $(document).ready(function(){
 	this.effect = this.functions.testFunction; 
 
    }
+
 	var cloroConf_1 = {
 		container : {
-			'width' : '70%', 
-			'position' : 'absolute', 
+			'width' : '1000px', 
 			'border'   : '10px solid black', 
-			'position' : 'absolute', 
-			'margin-left': '12%', 
-			'margin-top' : '100px'
+			'margin' : 'auto', 
+			'clear' : 'both', 
+			'display' : 'inline-block'
 		}, 
 		content : {
 			'float' : 'left', 
-			'width' : '5%', 
+			'width' : '2%', 
 			'background-color' : 'white',  
-			'border-radius' : '4px', 
-			'margin' : '4px', 
-			'height' : '50px' 
+			'border-radius' : '1px', 
+			'margin' : '0px', 
+			'height' : '50px', 
+			'position' : 'relative'
 		}
 	}
 
@@ -80,13 +80,18 @@ $(document).ready(function(){
 		   }
 	}; 
 	var proportions = {
-		cols : '17', 
-		rows : '6'
+		cols : '10', 
+		rows : '10'
 	}; 
 
 	var A1 = new clorox(cloroConf_1, "#clorox", proportions, cloroFunctions); 
 	A1.initView(); 
 	A1.cloroFill(); 
 	A1.effect(); 
+
+	var A2 = new clorox(cloroConf_1, "#clorox_1", proportions, cloroFunctions); 
+	A2.initView(); 
+	A2.cloroFill(); 
+	A2.effect();
 
 }); 
