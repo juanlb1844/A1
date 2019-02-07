@@ -21,7 +21,7 @@ $(document).ready(function(){
 			for( j = 0; j < this.proportions.rows; j++) {
 				for( i = 0; i < this.proportions.cols; i++) {
 						element = $('<div>'); 
-						element.append('<span>'+(i+j)+'</span>');
+						element.append('<span></span>');
 						element.css(this.config.content);  
 						$(element).addClass('pixel');  
 						$(element).addClass('pixel'+(i+j));
@@ -37,18 +37,18 @@ $(document).ready(function(){
 	var cloroConf_1 = {
 		container : {
 			'width' : '1000px', 
-			'border'   : '10px solid black', 
+			'border'   : '10px solid gray', 
 			'margin' : 'auto', 
 			'clear' : 'both', 
 			'display' : 'inline-block'
 		}, 
 		content : {
 			'float' : 'left', 
-			'width' : '2%', 
+			'width' : '10%', 
 			'background-color' : 'white',  
 			'border-radius' : '1px', 
 			'margin' : '0px', 
-			'height' : '50px', 
+			'height' : '5px', 
 			'position' : 'relative'
 		}
 	}
@@ -58,30 +58,32 @@ $(document).ready(function(){
 			var i = 0; 
 			var j = 0; 
 			var e = 0;  
-			var x = this.proportions.cols; 
+			//var x = this.proportions.cols; 
+			var x = 30; 		
 			setInterval(function() {
 					$('.pixel'+i).css('background-color', 'rgba('+ (Math.floor(Math.random() * 255) + 1 )+','+(Math.floor(Math.random() * 255) + 1)+','+(Math.floor(Math.random() * 255) + 1  )); 
 					i++; 
 					if(i == x ) i = 0; 
-			}, 40);
+			}, 50);
 
 			setInterval(function() {
 					$('.pixel'+j).css('background-color', 'rgba('+ (Math.floor(Math.random() * 255) + 1 )+','+(Math.floor(Math.random() * 255) + 1)+','+(Math.floor(Math.random() * 255) + 1  )); 
 					j++; 
 					if(j == x ) j = 0; 
-			}, 50);
+			}, 100);
 
 			setInterval(function() {
 					$('.pixel'+e).css('background-color', 'white');  
 					e++; 
 					if(e == x ) e = 0; 
-			}, 60);
+			}, 80);
 
-		   }
-	}; 
+		}
+	};
+
 	var proportions = {
 		cols : '10', 
-		rows : '10'
+		rows : '5'
 	}; 
 
 	var A1 = new clorox(cloroConf_1, "#clorox", proportions, cloroFunctions); 
@@ -90,8 +92,8 @@ $(document).ready(function(){
 	A1.effect(); 
 
 	var A2 = new clorox(cloroConf_1, "#clorox_1", proportions, cloroFunctions); 
-	A2.initView(); 
+	/*A2.initView(); 
 	A2.cloroFill(); 
-	A2.effect();
+	A2.effect();*/ 
 
 }); 
